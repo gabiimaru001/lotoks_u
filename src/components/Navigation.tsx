@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import { useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   LayoutDashboard, 
@@ -40,7 +40,7 @@ interface SidebarLinkProps {
 function SidebarLink({ href, icon: Icon, label, active }: SidebarLinkProps) {
   return (
     <Link
-      to={href}
+      href={href}
       className={cn(
         "group relative flex items-center gap-3 px-6 py-3 rounded-md transition-all duration-200",
         active 
@@ -62,13 +62,13 @@ function SidebarLink({ href, icon: Icon, label, active }: SidebarLinkProps) {
 }
 
 export function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
-  const { pathname: pathname } = useLocation();
-  const navigate = useNavigate();
-  const { logout, user } = useAuthStore();
+  const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuthStore();
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    router.push("/login");
   };
 
   const links = isAdmin ? [
@@ -90,7 +90,7 @@ export function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
   return (
     <aside className="fixed left-0 top-0 h-screen w-60 bg-[#1a1a2e] flex flex-col py-6 px-4 z-40 border-r border-white/5">
       <div className="mb-10 px-4">
-        <Link to="/" className="text-2xl font-bold text-white">
+        <Link href="/" className="text-2xl font-bold text-white">
           Lotoks<span className="text-blue-500">.</span>
         </Link>
         {isAdmin && <div className="mt-2 px-2 py-0.5 rounded-full bg-blue-500/20 text-[8px] font-bold text-blue-400 uppercase tracking-widest inline-block">Admin Portal</div>}
@@ -117,7 +117,7 @@ export function Sidebar({ isAdmin = false }: { isAdmin?: boolean }) {
 }
 
 export function MobileTabBar() {
-  const { pathname: pathname } = useLocation();
+  const pathname = usePathname();
   
   const tabs = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Home" },
@@ -132,7 +132,7 @@ export function MobileTabBar() {
       {tabs.map((tab) => {
         const active = pathname === tab.href;
         return (
-          <Link key={tab.href} to={tab.href} className="flex flex-col items-center gap-1">
+          <Link key={tab.href} href={tab.href} className="flex flex-col items-center gap-1">
             <div className={cn("p-2 rounded-full transition-colors", active ? "text-primary bg-primary/10" : "text-outline-variant")}>
               <tab.icon size={20} />
             </div>
@@ -146,9 +146,9 @@ export function MobileTabBar() {
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
-  const { pathname: pathname } = useLocation();
-  const navigate = useNavigate();
-  const { logout, user } = useAuthStore();
+  const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useAuthStore();
   
   useEffect(() => {
     setIsOpen(false);
@@ -156,7 +156,7 @@ export function MobileMenu() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    router.push("/login");
   };
 
   const userLinks = [
@@ -176,7 +176,7 @@ export function MobileMenu() {
     { href: "/admin/languages", icon: Languages, label: "i18n" },
   ];
 
-  const links = pathname.startsWith("/admin") ? adminLinks : userLinks;
+  const links = pathname?.startsWith("/admin") ? adminLinks : userLinks;
 
   return (
     <>
@@ -206,7 +206,7 @@ export function MobileMenu() {
               className="lg:hidden fixed top-0 left-0 h-full w-60 bg-[#1a1a2e] z-50 p-4"
             >
               <div className="flex justify-between items-center mb-8">
-                <Link to="/" className="text-xl font-bold text-white">
+                <Link href="/" className="text-xl font-bold text-white">
                   Lotoks<span className="text-blue-500">.</span>
                 </Link>
                 <button
@@ -222,7 +222,7 @@ export function MobileMenu() {
                   return (
                     <Link
                       key={link.href}
-                      to={link.href}
+                      href={link.href}
                       onClick={() => setIsOpen(false)}
                       className={cn(
                         "flex items-center gap-3 px-4 py-3 rounded-md transition-all duration-200",

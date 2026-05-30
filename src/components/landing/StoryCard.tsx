@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from "framer-motion";
 
 interface StoryCardProps {
@@ -38,7 +38,7 @@ export default function StoryCard({
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{heading}</h3>
         <p className="text-white/70 text-lg mb-8 leading-relaxed">{text}</p>
         <Link
-          to={ctaLink}
+          href={ctaLink}
           className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-navy font-bold rounded-full hover:bg-gold/90 hover:scale-102 active:scale-98 transition-all"
         >
           {ctaLabel}

@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from "react";
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from "framer-motion";
 
 interface HeroSectionProps {
@@ -90,7 +90,7 @@ export default function HeroSection({ videoRef, onSentinelChange }: HeroSectionP
 
           {/* CTA Button */}
           <Link
-            to="/eligibility"
+            href="/eligibility"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gold text-navy font-bold text-lg rounded-full hover:bg-gold/90 hover:scale-105 active:scale-95 transition-all shadow-xl shadow-gold/20"
           >
             Check Eligibility

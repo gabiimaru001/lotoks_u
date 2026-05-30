@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Globe, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -25,7 +25,7 @@ const servicesDropdown = [
 ];
 
 export function Navbar() {
-  const { pathname: pathname } = useLocation();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -60,7 +60,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-2 group">
             <motion.div
               className="w-10 h-10 rounded-xl overflow-hidden"
               whileHover={{ scale: 1.05 }}
@@ -113,7 +113,7 @@ export function Navbar() {
                           {servicesDropdown.map((item) => (
                             <Link
                               key={item.href}
-                              to={item.href}
+                              href={item.href}
                               className="block px-4 py-2.5 text-white/80 hover:text-gold hover:bg-gold/5 transition-colors text-sm"
                             >
                               {item.label}
@@ -125,7 +125,7 @@ export function Navbar() {
                   </div>
                 ) : (
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className={`
                       px-4 py-2 rounded-lg font-medium text-sm
                       transition-colors duration-200
@@ -144,12 +144,12 @@ export function Navbar() {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <Link to="/login">
+            <Link href="/login">
               <Button variant="ghost" size="sm" className="text-white">
                 Sign In
               </Button>
             </Link>
-            <Link to="/eligibility">
+            <Link href="/eligibility">
               <Button 
                 variant="primary" 
                 size="sm"
@@ -187,7 +187,7 @@ export function Navbar() {
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
-                    to={link.href}
+                    href={link.href}
                     className={`
                       px-4 py-3 rounded-lg font-medium text-sm
                       transition-colors duration-200
@@ -207,7 +207,7 @@ export function Navbar() {
                     {servicesDropdown.map((item) => (
                       <Link
                         key={item.href}
-                        to={item.href}
+                        href={item.href}
                         className="block px-4 py-2 text-white/60 hover:text-gold text-sm"
                       >
                         {item.label}
@@ -219,12 +219,12 @@ export function Navbar() {
                 <div className="border-t border-white/10 my-3" />
                 
                 <Link
-                  to="/login"
+                  href="/login"
                   className="px-4 py-3 rounded-lg font-medium text-sm text-white/80 hover:text-white hover:bg-white/5"
                 >
                   Sign In
                 </Link>
-                <Link to="/eligibility" className="px-4 py-3">
+                <Link href="/eligibility" className="px-4 py-3">
                   <Button variant="primary" size="md" fullWidth>
                     Check Eligibility
                   </Button>

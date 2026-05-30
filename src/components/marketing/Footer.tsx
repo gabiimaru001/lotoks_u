@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from "framer-motion";
 import { Globe, Mail, Phone, MapPin, ArrowRight, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -48,7 +48,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 group mb-6">
+            <Link href="/" className="flex items-center gap-2 group mb-6">
               <motion.div
                 className="w-12 h-12 rounded-xl overflow-hidden"
                 whileHover={{ scale: 1.05 }}
@@ -92,7 +92,7 @@ export function Footer() {
               {footerLinks.services.map((link) => (
                 <li key={link.href}>
                   <Link 
-                    to={link.href}
+                    href={link.href}
                     className="text-white/60 hover:text-gold transition-colors"
                   >
                     {link.label}
@@ -109,7 +109,7 @@ export function Footer() {
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
                   <Link 
-                    to={link.href}
+                    href={link.href}
                     className="text-white/60 hover:text-gold transition-colors"
                   >
                     {link.label}
@@ -126,7 +126,7 @@ export function Footer() {
               {footerLinks.resources.map((link) => (
                 <li key={link.href}>
                   <Link 
-                    to={link.href}
+                    href={link.href}
                     className="text-white/60 hover:text-gold transition-colors"
                   >
                     {link.label}
@@ -143,7 +143,7 @@ export function Footer() {
               {footerLinks.legal.map((link) => (
                 <li key={link.href}>
                   <Link 
-                    to={link.href}
+                    href={link.href}
                     className="text-white/60 hover:text-gold transition-colors"
                   >
                     {link.label}
@@ -156,7 +156,7 @@ export function Footer() {
             <div className="p-4 rounded-xl bg-gold/10 border border-gold/20">
               <h5 className="font-heading font-semibold mb-2">Stay Updated</h5>
               <p className="text-sm text-white/60 mb-3">Get the latest news and updates</p>
-              <Link to="/contact">
+              <Link href="/contact">
                 <Button variant="secondary" size="sm" fullWidth>
                   Subscribe
                 </Button>
@@ -218,13 +218,13 @@ export function MiniFooter() {
           </div>
           
           <div className="flex items-center gap-6">
-            <Link to="/privacy" className="text-white/40 text-sm hover:text-gold transition-colors">
+            <Link href="/privacy" className="text-white/40 text-sm hover:text-gold transition-colors">
               Privacy
             </Link>
-            <Link to="/terms" className="text-white/40 text-sm hover:text-gold transition-colors">
+            <Link href="/terms" className="text-white/40 text-sm hover:text-gold transition-colors">
               Terms
             </Link>
-            <Link to="/contact" className="text-white/40 text-sm hover:text-gold transition-colors">
+            <Link href="/contact" className="text-white/40 text-sm hover:text-gold transition-colors">
               Contact
             </Link>
           </div>

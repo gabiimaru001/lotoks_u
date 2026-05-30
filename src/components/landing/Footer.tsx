@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <Link to="/" className="text-2xl font-bold text-white mb-4 block font-heading">
+            <Link href="/" className="text-2xl font-bold text-white mb-4 block font-heading">
               Lotoks<span className="text-gold">.</span>
             </Link>
             <p className="text-white/60 max-w-sm font-body">
@@ -24,7 +24,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  to="/eligibility"
+                  href="/eligibility"
                   className="text-white/60 hover:text-gold transition-colors"
                 >
                   Check Eligibility
@@ -32,7 +32,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/apply"
+                  href="/apply"
                   className="text-white/60 hover:text-gold transition-colors"
                 >
                   Apply Now
@@ -40,7 +40,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/opportunities"
+                  href="/opportunities"
                   className="text-white/60 hover:text-gold transition-colors"
                 >
                   Opportunities
@@ -48,7 +48,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/documents"
+                  href="/documents"
                   className="text-white/60 hover:text-gold transition-colors"
                 >
                   Documents
@@ -73,10 +73,10 @@ export default function Footer() {
             © {new Date().getFullYear()} Lotoks. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="#" className="text-white/40 text-sm hover:text-white">
+            <Link href="#" className="text-white/40 text-sm hover:text-white">
               Privacy Policy
             </Link>
-            <Link to="#" className="text-white/40 text-sm hover:text-white">
+            <Link href="#" className="text-white/40 text-sm hover:text-white">
               Terms of Service
             </Link>
           </div>

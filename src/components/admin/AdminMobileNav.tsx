@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   Menu, 
   X, 
@@ -9,7 +10,7 @@ import {
   List,
   CreditCard,
   Sliders,
-  Language,
+  Languages,
   Globe,
   Award,
   Settings,
@@ -28,7 +29,7 @@ interface AdminMobileNavProps {
 }
 
 export function AdminMobileNav({ admin, onLogout }: AdminMobileNavProps) {
-  const location = useLocation();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
 
   const sidebarItems = [
@@ -40,7 +41,7 @@ export function AdminMobileNav({ admin, onLogout }: AdminMobileNavProps) {
       { name: 'Staff', href: '/admin/staff', icon: Users },
       { name: 'Requirements', href: '/admin/requirements', icon: Award },
       { name: 'Config', href: '/admin/config', icon: Settings },
-      { name: 'Languages', href: '/admin/languages', icon: Language },
+      { name: 'Languages', href: '/admin/languages', icon: Languages },
     ] : [
       { name: 'Requirements', href: '/admin/requirements', icon: Award },
     ]),
@@ -60,7 +61,7 @@ export function AdminMobileNav({ admin, onLogout }: AdminMobileNavProps) {
         {isOpen && (
           <motion.aside
             initial={{ translateX: '-100%' }}
-            animate={{ translateX: 0% }}
+            animate={{ translateX: '0%' }}
             exit={{ translateX: '-100%' }}
             className="fixed top-0 left-0 h-full w-64 bg-white border-r border-white/20 z-50"
           >
@@ -85,10 +86,10 @@ export function AdminMobileNav({ admin, onLogout }: AdminMobileNavProps) {
               {sidebarItems.map((item) => (
                 <Link
                   key={item.href}
-                  to={item.href}
+                  href={item.href}
                   className={`
                     flex w-full items-center gap-3 px-4 py-3 text-navy/60 hover:bg-white/10 hover:text-navy/80 transition-colors
-                    ${location.pathname === item.href ? 'bg-white/5 text-navy font-medium' : ''}
+                    ${pathname === item.href ? 'bg-white/5 text-navy font-medium' : ''}
                   `}
                 >
                   <item.icon className="w-5 h-5" />
